@@ -7,7 +7,7 @@ public class Contact {
 
     private String name;
     private String surname;
-    private String phoneNumber;
+    private String phoneNumber = "[no number]";
 
     public Contact() {
     }

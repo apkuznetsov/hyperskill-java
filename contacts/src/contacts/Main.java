@@ -4,21 +4,97 @@ import java.util.Scanner;
 
 public class Main {
 
+    private static final PhoneBook contacts = new PhoneBook();
+
     public static void main(String[] args) {
 
-        Contact contact = new Contact();
-
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the name of the person:\n> ");
-        contact.setName(scanner.nextLine());
-        System.out.print("Enter the surname of the person:\n> ");
-        contact.setSurname(scanner.nextLine());
-        System.out.print("Enter the number::\n> ");
-        contact.setPhoneNumber(scanner.nextLine());
-        System.out.println();
+        String input;
+        while (true) {
+            System.out.println("Enter action (add, remove, edit, count, list, exit): > ");
+            input = scanner.nextLine();
+            switch (input) {
+                case "add":
+                    printAdd();
+                    break;
+                case "remove":
+                    printRemove();
+                    break;
+                case "edit":
+                    printEdit();
+                    break;
+                case "count":
+                    System.out.println("The Phone Book has " + contacts.getPhoneBookSize() + " records.");
+                    break;
+                case "list":
+                    contacts.printAllContacts();
+                    break;
+                case "exit":
+                    return;
+            }
+        }
+    }
 
-        PhoneBook phoneBook = new PhoneBook(contact);
-        System.out.println("A record created!");
-        System.out.println("A Phone Book with a single record created!");
+    private static void printAdd() {
+        Contact contact = new Contact();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the name: > ");
+        contact.setName(scanner.nextLine());
+
+        System.out.println("Enter the surname: > ");
+        contact.setSurname(scanner.nextLine());
+
+        System.out.println("Enter the number: > ");
+        contact.setPhoneNumber(scanner.nextLine());
+
+        contacts.addContact(contact);
+        System.out.println("The record added.");
+        scanner.close();
+    }
+
+    private static void printRemove() {
+        Scanner scanner = new Scanner(System.in);
+        if (contacts.getPhoneBookSize() != 0) {
+            contacts.printAllContacts();
+            System.out.println("Select a record: > ");
+            contacts.removeContact(Integer.parseInt(scanner.nextLine()));
+            System.out.println("The record removed!");
+        } else {
+            System.out.println("No records to remove!");
+        }
+        scanner.close();
+    }
+
+    private static void printEdit() {
+        Scanner scanner = new Scanner(System.in);
+        if (contacts.getPhoneBookSize() > 0) {
+            contacts.printAllContacts();
+            System.out.println("Select a record: > ");
+            int id = Integer.parseInt(scanner.nextLine());
+            Contact contact = contacts.getContact(id);
+
+            System.out.println("Select a field (name, surname, number): > ");
+            switch (scanner.nextLine()) {
+                case "name" -> {
+                    System.out.println("Enter the name: > ");
+                    contact.setName(scanner.nextLine());
+                }
+                case "surname" -> {
+                    System.out.println("Enter the surname: > ");
+                    contact.setSurname(scanner.nextLine());
+                }
+                case "number" -> {
+                    System.out.println("Enter the number: > ");
+                    contact.setPhoneNumber(scanner.nextLine());
+                }
+                default -> System.out.println("Wrong field!");
+            }
+
+            contacts.editContact(id, contact);
+            System.out.println("The record updated!");
+        } else {
+            System.out.println("No records to edit!");
+        }
     }
 }
