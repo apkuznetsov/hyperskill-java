@@ -38,6 +38,19 @@ public class Main {
     }
 
     private static void printAdd() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the type (person, organization): > ");
+        String enteredType = scanner.nextLine();
+
+        if (enteredType.equals("person")) {
+            printAddPerson();
+        } else if (enteredType.equals("organization")) {
+            printAddOrganization();
+        }
+
+        scanner.close();
+    }
         Person person = new Person();
         Scanner scanner = new Scanner(System.in);
 
