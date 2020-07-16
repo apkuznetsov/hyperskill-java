@@ -1,6 +1,10 @@
 package contacts.contacts;
 
+import contacts.exceptions.BadBirthDateException;
+import contacts.exceptions.BadGenderException;
+
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class Person extends Contact {
 
@@ -39,12 +43,30 @@ public class Person extends Contact {
         this.gender = gender;
     }
 
+    public void setGender(String gender) {
+        if (gender.equals("M")) {
+            this.gender = true;
+        } else if (gender.equals("F")) {
+            this.gender = false;
+        } else {
+            throw new BadGenderException();
+        }
+    }
+
     public LocalDate getBirthDate() {
         return birthDate;
     }
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+        try {
+            this.birthDate = LocalDate.parse(birthDate);
+        } catch (DateTimeParseException exc) {
+            throw new BadBirthDateException();
+        }
     }
 
     @Override

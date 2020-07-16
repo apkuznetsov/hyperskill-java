@@ -1,6 +1,8 @@
 package contacts;
 
 import contacts.contacts.Person;
+import contacts.exceptions.BadBirthDateException;
+import contacts.exceptions.BadGenderException;
 
 import java.util.Scanner;
 
@@ -51,6 +53,8 @@ public class Main {
 
         scanner.close();
     }
+
+    private static void printAddPerson() {
         Person person = new Person();
         Scanner scanner = new Scanner(System.in);
 
@@ -60,11 +64,26 @@ public class Main {
         System.out.println("Enter the surname: > ");
         person.setSurname(scanner.nextLine());
 
+        try {
+            System.out.println("Enter the birth date: > ");
+            person.setBirthDate(scanner.nextLine());
+        } catch (BadBirthDateException exc) {
+            System.out.println("Bad birth date!");
+        }
+
+        try {
+            System.out.println("Enter the gender (M, F): > ");
+            person.setGender(scanner.nextLine());
+        } catch (BadGenderException exc) {
+            System.out.println("Bad gender!");
+        }
+
         System.out.println("Enter the number: > ");
         person.setPhoneNumber(scanner.nextLine());
 
         contacts.addContact(person);
         System.out.println("The record added.");
+
         scanner.close();
     }
 
