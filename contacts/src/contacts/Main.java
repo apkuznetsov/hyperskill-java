@@ -204,7 +204,36 @@ public class Main {
         return person;
     }
 
+    private static Contact printEditOrganization(Contact contact) {
+        Scanner scanner = new Scanner(System.in);
+
+        Organization organization = (Organization) contact;
+
+        System.out.println("Select a field (name, address, number): >");
+        switch (scanner.nextLine()) {
+            case "name":
+                System.out.println("Enter the name: > ");
+                organization.setName(scanner.nextLine());
+                break;
+            case "address":
+                System.out.println("Enter the surname: > ");
+                organization.setAddress(scanner.nextLine());
+                break;
+            case "number":
+                try {
+                    System.out.println("Enter the number: > ");
+                    organization.setPhoneNumber(scanner.nextLine());
+                } catch (WrongNumberException exc) {
+                    System.out.println("Wrong number format!");
+                }
+                break;
+            default:
+                System.out.println("Wrong field!");
+                break;
         }
+
+        scanner.close();
+        return organization;
     }
 
     private static void printInfo() {
