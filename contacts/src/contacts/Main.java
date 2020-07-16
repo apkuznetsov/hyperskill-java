@@ -155,28 +155,55 @@ public class Main {
 
         scanner.close();
     }
-            switch (scanner.nextLine()) {
-                case "name":
-                    System.out.println("Enter the name: > ");
-                    person.setName(scanner.nextLine());
-                    break;
-                case "surname":
-                    System.out.println("Enter the surname: > ");
-                    person.setSurname(scanner.nextLine());
-                    break;
-                case "number":
+
+    private static Contact printEditPerson(Contact contact) {
+        Scanner scanner = new Scanner(System.in);
+
+        Person person = (Person) contact;
+
+        System.out.println("Select a field (name, surname, birth, gender, number): >");
+        switch (scanner.nextLine()) {
+            case "name":
+                System.out.println("Enter the name: > ");
+                person.setName(scanner.nextLine());
+                break;
+            case "surname":
+                System.out.println("Enter the surname: > ");
+                person.setSurname(scanner.nextLine());
+                break;
+            case "birth":
+                try {
+                    System.out.println("Enter the birth date: > ");
+                    person.setBirthDate(scanner.nextLine());
+                } catch (BadBirthDateException exc) {
+                    System.out.println("Bad birth date!");
+                }
+                break;
+            case "gender":
+                try {
+                    System.out.println("Enter the gender (M, F): > ");
+                    person.setGender(scanner.nextLine());
+                } catch (BadGenderException exc) {
+                    System.out.println("Bad gender!");
+                }
+                break;
+            case "number":
+                try {
                     System.out.println("Enter the number: > ");
                     person.setPhoneNumber(scanner.nextLine());
-                    break;
-                default:
-                    System.out.println("Wrong field!");
-                    break;
-            }
+                } catch (WrongNumberException exc) {
+                    System.out.println("Wrong number format!");
+                }
+                break;
+            default:
+                System.out.println("Wrong field!");
+                break;
+        }
 
-            contacts.editContact(id, person);
-            System.out.println("The record updated!");
-        } else {
-            System.out.println("No records to edit!");
+        scanner.close();
+        return person;
+    }
+
         }
     }
 
