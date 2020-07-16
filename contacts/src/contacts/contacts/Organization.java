@@ -4,6 +4,10 @@ public class Organization extends Contact {
 
     private String address;
 
+    public Organization() {
+        super();
+    }
+
     public Organization(String name, String address, String phoneNumber) {
         super(name, phoneNumber);
         this.address = address;

@@ -8,6 +8,10 @@ public class Person extends Contact {
     private boolean gender;
     private LocalDate birthDate;
 
+    public Person() {
+        super();
+    }
+
     public Person(String name, String surname, String phoneNumber, boolean gender, LocalDate birthDate) {
         super(name, phoneNumber);
         this.surname = surname;

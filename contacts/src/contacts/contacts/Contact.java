@@ -11,11 +11,15 @@ public class Contact {
     private String phoneNumber = "[no number]";
     private LocalDate lastEditedAt;
 
-    public Contact(String name, String phoneNumber) {
-        this.name = name;
-        this.phoneNumber = phoneNumber;
+    public Contact() {
         createdAt = LocalDate.now();
         lastEditedAt = createdAt;
+    }
+
+    public Contact(String name, String phoneNumber) {
+        this();
+        this.name = name;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getName() {
