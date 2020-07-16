@@ -2,7 +2,6 @@ package contacts.contacts;
 
 import contacts.exceptions.WrongNumberException;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

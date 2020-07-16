@@ -17,7 +17,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String input;
         while (true) {
-            System.out.println("Enter action (add, remove, edit, count, list, exit): > ");
+            System.out.println("Enter action (add, remove, edit, count, info, exit): > ");
             input = scanner.nextLine();
             switch (input) {
                 case "add":
@@ -32,12 +32,13 @@ public class Main {
                 case "count":
                     System.out.println("The Phone Book has " + contacts.getPhoneBookSize() + " records.");
                     break;
-                case "list":
-                    contacts.printAllContacts();
+                case "info":
+                    printInfo();
                     break;
                 case "exit":
                     return;
             }
+            System.out.println();
         }
     }
 
@@ -161,5 +162,16 @@ public class Main {
         } else {
             System.out.println("No records to edit!");
         }
+    }
+
+    private static void printInfo() {
+        Scanner scanner = new Scanner(System.in);
+
+        contacts.printAllContacts();
+
+        System.out.println("Enter index to show info: > ");
+        System.out.println(
+                contacts.getContact(Integer.parseInt(scanner.nextLine())).toString()
+        );
     }
 }
