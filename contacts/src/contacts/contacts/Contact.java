@@ -1,5 +1,7 @@
 package contacts.contacts;
 
+import contacts.exceptions.WrongNumberException;
+
 import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,8 +42,8 @@ public class Contact {
             this.phoneNumber = phoneNumber;
             lastEditedAt = createdAt;
         } else {
-            System.out.println("Wrong number format!");
             this.phoneNumber = "[no number]";
+            throw new WrongNumberException();
         }
     }
 

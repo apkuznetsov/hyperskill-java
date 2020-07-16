@@ -1,8 +1,10 @@
 package contacts;
 
+import contacts.contacts.Organization;
 import contacts.contacts.Person;
 import contacts.exceptions.BadBirthDateException;
 import contacts.exceptions.BadGenderException;
+import contacts.exceptions.WrongNumberException;
 
 import java.util.Scanner;
 
@@ -78,10 +80,37 @@ public class Main {
             System.out.println("Bad gender!");
         }
 
-        System.out.println("Enter the number: > ");
-        person.setPhoneNumber(scanner.nextLine());
+        try {
+            System.out.println("Enter the number: > ");
+            person.setPhoneNumber(scanner.nextLine());
+        } catch (WrongNumberException exc) {
+            System.out.println("Wrong number format!");
+        }
 
         contacts.addContact(person);
+        System.out.println("The record added.");
+
+        scanner.close();
+    }
+
+    private static void printAddOrganization() {
+        Organization organization = new Organization();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the organization name: > ");
+        organization.setName(scanner.nextLine());
+
+        System.out.println("Enter the address: > ");
+        organization.setAddress(scanner.nextLine());
+
+        try {
+            System.out.println("Enter the number: > ");
+            organization.setPhoneNumber(scanner.nextLine());
+        } catch (WrongNumberException exc) {
+            System.out.println("Wrong number format!");
+        }
+
+        contacts.addContact(organization);
         System.out.println("The record added.");
 
         scanner.close();
