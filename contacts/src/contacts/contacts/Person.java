@@ -8,14 +8,17 @@ public class Person {
     private String name;
     private String surname;
     private String phoneNumber = "[no number]";
+    private boolean gender;
+    private LocalDate birthDate;
 
     public Person() {
     }
 
-    public Person(String name, String surname, String phoneNumber) {
+    public Person(String name, String surname, String phoneNumber, boolean gender, LocalDate birthDate) {
         this.name = name;
         this.surname = surname;
         this.phoneNumber = phoneNumber;
+        this.gender = gender;
     }
 
     public String getName() {
@@ -54,6 +57,18 @@ public class Person {
                 +"([ -][0-9A-Za-z]{2,}[ -]?)*");
         Matcher matcher = pattern.matcher(phoneNumber);
         return matcher.matches();
+    }
+
+    public boolean isMale() {
+        return gender;
+    }
+
+    public boolean isFemale() {
+        return !gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
     }
 
     @Override
