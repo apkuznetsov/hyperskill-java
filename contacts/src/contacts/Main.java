@@ -76,19 +76,21 @@ public class Main {
 
             System.out.println("Select a field (name, surname, number): > ");
             switch (scanner.nextLine()) {
-                case "name" -> {
+                case "name":
                     System.out.println("Enter the name: > ");
                     contact.setName(scanner.nextLine());
-                }
-                case "surname" -> {
+                    break;
+                case "surname":
                     System.out.println("Enter the surname: > ");
                     contact.setSurname(scanner.nextLine());
-                }
-                case "number" -> {
+                    break;
+                case "number":
                     System.out.println("Enter the number: > ");
                     contact.setPhoneNumber(scanner.nextLine());
-                }
-                default -> System.out.println("Wrong field!");
+                    break;
+                default:
+                    System.out.println("Wrong field!");
+                    break;
             }
 
             contacts.editContact(id, contact);
