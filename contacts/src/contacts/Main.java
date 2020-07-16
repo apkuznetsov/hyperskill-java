@@ -1,5 +1,6 @@
 package contacts;
 
+import contacts.contacts.Contact;
 import contacts.contacts.Organization;
 import contacts.contacts.Person;
 import contacts.exceptions.BadBirthDateException;
@@ -132,13 +133,28 @@ public class Main {
 
     private static void printEdit() {
         Scanner scanner = new Scanner(System.in);
+
         if (contacts.getPhoneBookSize() > 0) {
             contacts.printAllContacts();
+
             System.out.println("Select a record: > ");
             int id = Integer.parseInt(scanner.nextLine());
-            Person person = contacts.getContact(id);
+            Contact contact = contacts.getContact(id);
 
-            System.out.println("Select a field (name, surname, number): > ");
+            if (contact instanceof Person) {
+                contact = printEditPerson(contact);
+            } else if (contact instanceof Organization) {
+                contact = printEditOrganization(contact);
+            }
+
+            contacts.editContact(id, contact);
+            System.out.println("The record updated!");
+        } else {
+            System.out.println("No records to edit!");
+        }
+
+        scanner.close();
+    }
             switch (scanner.nextLine()) {
                 case "name":
                     System.out.println("Enter the name: > ");

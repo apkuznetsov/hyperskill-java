@@ -1,7 +1,6 @@
 package contacts;
 
 import contacts.contacts.Contact;
-import contacts.contacts.Person;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +17,8 @@ public class PhoneBook {
         contacts.remove(id - 1);
     }
 
-    public void editContact(int id, Person editedPerson) {
-        contacts.set(id - 1, editedPerson);
+    public void editContact(int id, Contact editedContact) {
+        contacts.set(id - 1, editedContact);
     }
 
     public Contact getContact(int id) {
