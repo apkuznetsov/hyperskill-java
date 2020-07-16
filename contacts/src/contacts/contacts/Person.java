@@ -64,8 +64,12 @@ public class Person extends Contact {
         }
     }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
+    public String getBirthDateString() {
+        if (birthDate == null) {
+            return "[no data]";
+        } else {
+            return birthDate.toString();
+        }
     }
 
     public void setBirthDate(LocalDate birthDate) {
@@ -76,6 +80,7 @@ public class Person extends Contact {
         try {
             this.birthDate = LocalDate.parse(birthDate);
         } catch (DateTimeParseException exc) {
+            birthDate = null;
             throw new BadBirthDateException();
         }
     }
@@ -85,7 +90,7 @@ public class Person extends Contact {
         return "Name: " + super.getName() + '\n' +
                 "Surname: " + getSurname() + '\n' +
                 "Gender: " + getGenderLetter() + '\n' +
-                "Birth date: " + getBirthDate().toString() + '\n' +
+                "Birth date: " + getBirthDateString() + '\n' +
                 "Number: " + super.getPhoneNumber() + '\n' +
                 "Time created: " + super.getCreatedAt() + '\n' +
                 "Time last edit: " + super.getLastEditedAt() + '\n';
