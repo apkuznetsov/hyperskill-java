@@ -3,18 +3,19 @@ package contacts.contacts;
 import contacts.exceptions.WrongNumberException;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Contact {
 
-    private final LocalDate createdAt;
+    private final LocalDateTime createdAt;
     private String name;
     private String phoneNumber = "[no number]";
-    private LocalDate lastEditedAt;
+    private LocalDateTime lastEditedAt;
 
     public Contact() {
-        createdAt = LocalDate.now();
+        createdAt = LocalDateTime.now();
         lastEditedAt = createdAt;
     }
 
@@ -56,11 +57,11 @@ public class Contact {
         return matcher.matches();
     }
 
-    public LocalDate getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public LocalDate getLastEditedAt() {
+    public LocalDateTime getLastEditedAt() {
         return lastEditedAt;
     }
 }
