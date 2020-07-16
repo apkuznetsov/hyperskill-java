@@ -39,6 +39,10 @@ public class Person extends Contact {
         return !gender;
     }
 
+    public char getGenderLetter() {
+        return gender ? 'M' : 'F';
+    }
+
     public void setGender(boolean gender) {
         this.gender = gender;
     }
@@ -71,6 +75,12 @@ public class Person extends Contact {
 
     @Override
     public String toString() {
-        return "" + super.getName() + " " + surname + ", " + super.getPhoneNumber();
+        return "Name: " + super.getName() + '\n' +
+                "Surname: " + getSurname() + '\n' +
+                "Gender: " + getGenderLetter() + '\n' +
+                "Birth date: " + getBirthDate().toString() + '\n' +
+                "Number: " + super.getPhoneNumber() + '\n' +
+                "Time created: " + super.getCreatedAt() + '\n' +
+                "Time last edit: " + super.getLastEditedAt() + '\n';
     }
 }

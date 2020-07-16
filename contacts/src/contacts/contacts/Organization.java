@@ -23,6 +23,10 @@ public class Organization extends Contact {
 
     @Override
     public String toString() {
-        return "" + super.getName() + " " + address + ", " + super.getPhoneNumber();
+        return "Organization name: " + super.getName() + '\n' +
+                "Address: " + getAddress() + '\n' +
+                "Number: " + super.getPhoneNumber() + '\n' +
+                "Time created: " + super.getCreatedAt() + '\n' +
+                "Time last edit: " + super.getLastEditedAt() + '\n';
     }
 }
