@@ -1,5 +1,6 @@
 package contacts.contacts;
 
+import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,6 +20,7 @@ public class Person {
         this.surname = surname;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
+        this.birthDate = birthDate;
     }
 
     public String getName() {
@@ -42,7 +44,7 @@ public class Person {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        if (isPhoneNumber(phoneNumber)){
+        if (isPhoneNumber(phoneNumber)) {
             this.phoneNumber = phoneNumber;
         } else {
             System.out.println("Wrong number format!");
@@ -53,8 +55,8 @@ public class Person {
     private boolean isPhoneNumber(String phoneNumber) {
         Pattern pattern = Pattern.compile("\\+?" +
                 "((\\([0-9A-Za-z]+\\)|[0-9A-Za-z]+)"
-                +"|([0-9A-Za-z]+[ -]\\([0-9A-Za-z]{2,}\\))|[0-9A-Za-z]+[ -][0-9A-Za-z]{2,})"
-                +"([ -][0-9A-Za-z]{2,}[ -]?)*");
+                + "|([0-9A-Za-z]+[ -]\\([0-9A-Za-z]{2,}\\))|[0-9A-Za-z]+[ -][0-9A-Za-z]{2,})"
+                + "([ -][0-9A-Za-z]{2,}[ -]?)*");
         Matcher matcher = pattern.matcher(phoneNumber);
         return matcher.matches();
     }
@@ -71,8 +73,16 @@ public class Person {
         this.gender = gender;
     }
 
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
     @Override
     public String toString() {
-        return "" + name +" " + surname + ", " + phoneNumber;
+        return "" + name + " " + surname + ", " + phoneNumber;
     }
 }
