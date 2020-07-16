@@ -1,8 +1,5 @@
 package contacts.contacts;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Organization extends Contact {
 
     private String address;
@@ -22,6 +19,6 @@ public class Organization extends Contact {
 
     @Override
     public String toString() {
-        return "" + super.getName() +" " + address + ", " + super.getPhoneNumber();
+        return "" + super.getName() + " " + address + ", " + super.getPhoneNumber();
     }
 }
