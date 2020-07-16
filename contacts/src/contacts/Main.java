@@ -36,19 +36,19 @@ public class Main {
     }
 
     private static void printAdd() {
-        Contact contact = new Contact();
+        Person person = new Person();
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter the name: > ");
-        contact.setName(scanner.nextLine());
+        person.setName(scanner.nextLine());
 
         System.out.println("Enter the surname: > ");
-        contact.setSurname(scanner.nextLine());
+        person.setSurname(scanner.nextLine());
 
         System.out.println("Enter the number: > ");
-        contact.setPhoneNumber(scanner.nextLine());
+        person.setPhoneNumber(scanner.nextLine());
 
-        contacts.addContact(contact);
+        contacts.addContact(person);
         System.out.println("The record added.");
         scanner.close();
     }
@@ -72,28 +72,28 @@ public class Main {
             contacts.printAllContacts();
             System.out.println("Select a record: > ");
             int id = Integer.parseInt(scanner.nextLine());
-            Contact contact = contacts.getContact(id);
+            Person person = contacts.getContact(id);
 
             System.out.println("Select a field (name, surname, number): > ");
             switch (scanner.nextLine()) {
                 case "name":
                     System.out.println("Enter the name: > ");
-                    contact.setName(scanner.nextLine());
+                    person.setName(scanner.nextLine());
                     break;
                 case "surname":
                     System.out.println("Enter the surname: > ");
-                    contact.setSurname(scanner.nextLine());
+                    person.setSurname(scanner.nextLine());
                     break;
                 case "number":
                     System.out.println("Enter the number: > ");
-                    contact.setPhoneNumber(scanner.nextLine());
+                    person.setPhoneNumber(scanner.nextLine());
                     break;
                 default:
                     System.out.println("Wrong field!");
                     break;
             }
 
-            contacts.editContact(id, contact);
+            contacts.editContact(id, person);
             System.out.println("The record updated!");
         } else {
             System.out.println("No records to edit!");
