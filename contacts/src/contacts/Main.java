@@ -1,5 +1,7 @@
 package contacts;
 
+import contacts.contacts.Person;
+
 import java.util.Scanner;
 
 public class Main {

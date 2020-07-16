@@ -1,20 +1,20 @@
-package contacts;
+package contacts.contacts;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Company {
+public class Person {
 
     private String name;
-    private String address;
+    private String surname;
     private String phoneNumber = "[no number]";
 
-    public Company() {
+    public Person() {
     }
 
-    public Company(String name, String address, String phoneNumber) {
+    public Person(String name, String surname, String phoneNumber) {
         this.name = name;
-        this.address = address;
+        this.surname = surname;
         this.phoneNumber = phoneNumber;
     }
 
@@ -26,12 +26,12 @@ public class Company {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getPhoneNumber() {
@@ -58,6 +58,6 @@ public class Company {
 
     @Override
     public String toString() {
-        return "" + name +" " + address + ", " + phoneNumber;
+        return "" + name +" " + surname + ", " + phoneNumber;
     }
 }
