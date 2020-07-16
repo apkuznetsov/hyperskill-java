@@ -3,26 +3,13 @@ package contacts.contacts;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Organization {
+public class Organization extends Contact {
 
     private String address;
-    private String phoneNumber = "[no number]";
-
-    public Organization() {
-    }
 
     public Organization(String name, String address, String phoneNumber) {
-        this.name = name;
+        super(name, phoneNumber);
         this.address = address;
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getAddress() {
@@ -33,30 +20,8 @@ public class Organization {
         this.address = address;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        if (isPhoneNumber(phoneNumber)){
-            this.phoneNumber = phoneNumber;
-        } else {
-            System.out.println("Wrong number format!");
-            this.phoneNumber = "[no number]";
-        }
-    }
-
-    private boolean isPhoneNumber(String phoneNumber) {
-        Pattern pattern = Pattern.compile("\\+?" +
-                "((\\([0-9A-Za-z]+\\)|[0-9A-Za-z]+)"
-                +"|([0-9A-Za-z]+[ -]\\([0-9A-Za-z]{2,}\\))|[0-9A-Za-z]+[ -][0-9A-Za-z]{2,})"
-                +"([ -][0-9A-Za-z]{2,}[ -]?)*");
-        Matcher matcher = pattern.matcher(phoneNumber);
-        return matcher.matches();
-    }
-
     @Override
     public String toString() {
-        return "" + name +" " + address + ", " + phoneNumber;
+        return "" + super.getName() +" " + address + ", " + super.getPhoneNumber();
     }
 }
