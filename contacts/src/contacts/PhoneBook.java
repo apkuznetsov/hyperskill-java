@@ -1,5 +1,6 @@
 package contacts;
 
+import contacts.contacts.Contact;
 import contacts.contacts.Person;
 
 import java.util.ArrayList;
@@ -7,31 +8,31 @@ import java.util.List;
 
 public class PhoneBook {
 
-    final private List<Person> people = new ArrayList<>();
+    final private List<Contact> contacts = new ArrayList<>();
 
-    public void addContact(Person person) {
-        people.add(person);
+    public void addContact(Contact contact) {
+        contacts.add(contact);
     }
 
     public void removeContact(int id) {
-        people.remove(id - 1);
+        contacts.remove(id - 1);
     }
 
     public void editContact(int id, Person editedPerson) {
-        people.set(id - 1, editedPerson);
+        contacts.set(id - 1, editedPerson);
     }
 
-    public Person getContact(int id) {
-        return people.get(id - 1);
+    public Contact getContact(int id) {
+        return contacts.get(id - 1);
     }
 
     public int getPhoneBookSize() {
-        return people.size();
+        return contacts.size();
     }
 
     public void printAllContacts() {
         int i = 1;
-        for (Person c : people) {
+        for (Contact c : contacts) {
             System.out.println(i + ". " + c);
             i++;
         }
