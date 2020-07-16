@@ -3,16 +3,15 @@ package contacts.contacts;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Company {
+public class Organization {
 
-    private String name;
     private String address;
     private String phoneNumber = "[no number]";
 
-    public Company() {
+    public Organization() {
     }
 
-    public Company(String name, String address, String phoneNumber) {
+    public Organization(String name, String address, String phoneNumber) {
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
