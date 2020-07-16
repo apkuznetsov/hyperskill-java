@@ -9,7 +9,7 @@ import java.time.format.DateTimeParseException;
 public class Person extends Contact {
 
     private String surname;
-    private boolean gender;
+    private Boolean gender;
     private LocalDate birthDate;
 
     public Person() {
@@ -39,8 +39,14 @@ public class Person extends Contact {
         return !gender;
     }
 
-    public char getGenderLetter() {
-        return gender ? 'M' : 'F';
+    public String getGenderLetter() {
+        if (gender == null) {
+            return "[no data]";
+        } else if (gender) {
+            return "M";
+        } else {
+            return "F";
+        }
     }
 
     public void setGender(boolean gender) {
@@ -53,6 +59,7 @@ public class Person extends Contact {
         } else if (gender.equals("F")) {
             this.gender = false;
         } else {
+            gender = null;
             throw new BadGenderException();
         }
     }
