@@ -7,6 +7,7 @@ import contacts.exceptions.BadBirthDateException;
 import contacts.exceptions.BadGenderException;
 import contacts.exceptions.WrongNumberException;
 import contacts.phonebook.PhoneBook;
+import contacts.phonebook.PhoneBookFoundResult;
 
 import java.util.List;
 import java.util.Scanner;
@@ -126,13 +127,13 @@ public class Main {
 
     private static void printSearch() {
         System.out.println("Enter search query: > ");
-        List<String> foundStrings = contacts.find(scanner.nextLine());
+        List<PhoneBookFoundResult> foundStrings = contacts.find(scanner.nextLine());
 
         System.out.printf("Found %d results:\n", foundStrings.size());
         int i = 0;
-        for (String s : foundStrings) {
+        for (PhoneBookFoundResult r : foundStrings) {
             ++i;
-            System.out.printf("%d. %s\n", i, s);
+            System.out.printf("%d. %s\n", i, r.getFoundResult());
         }
     }
 
