@@ -135,6 +135,31 @@ public class Main {
             ++i;
             System.out.printf("%d. %s\n", i, r.getFoundResult());
         }
+
+        System.out.println();
+        printSearchAgain(foundStrings);
+    }
+
+    private static void printSearchAgain(List<PhoneBookFoundResult> foundStrings) {
+        System.out.println("[search] Enter action ([number], back, again): >");
+        String input = scanner.nextLine();
+
+        if (isNumeric(input)) {
+            int number = Integer.parseInt(input);
+            int contactId = foundStrings.get(number - 1).getContactId();
+            System.out.println(contacts.getContact(contactId));
+        } else if (input.equals("again")) {
+            printSearch();
+        }
+    }
+
+    public static boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException exc) {
+            return false;
+        }
     }
 
     private static void printRemove() {
