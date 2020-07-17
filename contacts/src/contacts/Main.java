@@ -20,7 +20,7 @@ public class Main {
     public static void main(String[] args) {
         String input;
         while (true) {
-            System.out.println("[menu] Enter action (add, list, search, count, exit): > ");
+            System.out.print("[menu] Enter action (add, list, search, count, exit): > ");
             input = scanner.nextLine();
             switch (input) {
                 case "add":
@@ -44,7 +44,7 @@ public class Main {
     }
 
     private static void printAdd() {
-        System.out.println("Enter the type (person, organization): > ");
+        System.out.print("Enter the type (person, organization): > ");
         String enteredType = scanner.nextLine();
 
         if (enteredType.equals("person")) {
@@ -57,28 +57,28 @@ public class Main {
     private static void printAddPerson() {
         Person person = new Person();
 
-        System.out.println("Enter the name: > ");
+        System.out.print("Enter the name: > ");
         person.setName(scanner.nextLine());
 
-        System.out.println("Enter the surname: > ");
+        System.out.print("Enter the surname: > ");
         person.setSurname(scanner.nextLine());
 
         try {
-            System.out.println("Enter the birth date: > ");
+            System.out.print("Enter the birth date: > ");
             person.setBirthDate(scanner.nextLine());
         } catch (BadBirthDateException exc) {
             System.out.println("Bad birth date!");
         }
 
         try {
-            System.out.println("Enter the gender (M, F): > ");
+            System.out.print("Enter the gender (M, F): > ");
             person.setGender(scanner.nextLine());
         } catch (BadGenderException exc) {
             System.out.println("Bad gender!");
         }
 
         try {
-            System.out.println("Enter the number: > ");
+            System.out.print("Enter the number: > ");
             person.setPhoneNumber(scanner.nextLine());
         } catch (WrongNumberException exc) {
             System.out.println("Wrong number format!");
@@ -91,14 +91,14 @@ public class Main {
     private static void printAddOrganization() {
         Organization organization = new Organization();
 
-        System.out.println("Enter the organization name: > ");
+        System.out.print("Enter the organization name: > ");
         organization.setName(scanner.nextLine());
 
-        System.out.println("Enter the address: > ");
+        System.out.print("Enter the address: > ");
         organization.setAddress(scanner.nextLine());
 
         try {
-            System.out.println("Enter the number: > ");
+            System.out.print("Enter the number: > ");
             organization.setPhoneNumber(scanner.nextLine());
         } catch (WrongNumberException exc) {
             System.out.println("Wrong number format!");
@@ -114,7 +114,7 @@ public class Main {
         System.out.println(contacts);
 
         System.out.println();
-        System.out.println("[list] Enter action ([number], back): > ");
+        System.out.print("[list] Enter action ([number], back): > ");
         String input = scanner.nextLine();
 
         if (isNumeric(input)) {
@@ -137,7 +137,7 @@ public class Main {
     }
 
     private static void printSearch() {
-        System.out.println("Enter search query: > ");
+        System.out.print("Enter search query: > ");
         List<PhoneBookFoundResult> foundStrings = contacts.find(scanner.nextLine());
 
         System.out.printf("Found %d results:\n", foundStrings.size());
@@ -152,7 +152,7 @@ public class Main {
     }
 
     private static void printSearchAgain(final List<PhoneBookFoundResult> foundStrings) {
-        System.out.println("[search] Enter action ([number], back, again): >");
+        System.out.print("[search] Enter action ([number], back, again): >");
         String input = scanner.nextLine();
 
         if (isNumeric(input)) {
@@ -169,7 +169,7 @@ public class Main {
     }
 
     private static void printEditContact(final int contactId, final Contact contact) {
-        System.out.println("[record] Enter action (edit, delete, menu): > ");
+        System.out.print("[record] Enter action (edit, delete, menu): > ");
         String input = scanner.nextLine();
 
         while (!input.equals("menu")) {
@@ -189,7 +189,7 @@ public class Main {
             }
 
             System.out.println();
-            System.out.println("[record] Enter action (edit, delete, menu): > ");
+            System.out.print("[record] Enter action (edit, delete, menu): > ");
             input = scanner.nextLine();
         }
     }
@@ -197,19 +197,19 @@ public class Main {
     private static Contact printEditPerson(Contact contact) {
         Person person = (Person) contact;
 
-        System.out.println("Select a field (name, surname, birth, gender, number): >");
+        System.out.print("Select a field (name, surname, birth, gender, number): >");
         switch (scanner.nextLine()) {
             case "name":
-                System.out.println("Enter the name: > ");
+                System.out.print("Enter the name: > ");
                 person.setName(scanner.nextLine());
                 break;
             case "surname":
-                System.out.println("Enter the surname: > ");
+                System.out.print("Enter the surname: > ");
                 person.setSurname(scanner.nextLine());
                 break;
             case "birth":
                 try {
-                    System.out.println("Enter the birth date: > ");
+                    System.out.print("Enter the birth date: > ");
                     person.setBirthDate(scanner.nextLine());
                 } catch (BadBirthDateException exc) {
                     System.out.println("Bad birth date!");
@@ -217,7 +217,7 @@ public class Main {
                 break;
             case "gender":
                 try {
-                    System.out.println("Enter the gender (M, F): > ");
+                    System.out.print("Enter the gender (M, F): > ");
                     person.setGender(scanner.nextLine());
                 } catch (BadGenderException exc) {
                     System.out.println("Bad gender!");
@@ -225,7 +225,7 @@ public class Main {
                 break;
             case "number":
                 try {
-                    System.out.println("Enter the number: > ");
+                    System.out.print("Enter the number: > ");
                     person.setPhoneNumber(scanner.nextLine());
                 } catch (WrongNumberException exc) {
                     System.out.println("Wrong number format!");
@@ -242,19 +242,19 @@ public class Main {
     private static Contact printEditOrganization(Contact contact) {
         Organization organization = (Organization) contact;
 
-        System.out.println("Select a field (name, address, number): >");
+        System.out.print("Select a field (name, address, number): >");
         switch (scanner.nextLine()) {
             case "name":
-                System.out.println("Enter the name: > ");
+                System.out.print("Enter the name: > ");
                 organization.setName(scanner.nextLine());
                 break;
             case "address":
-                System.out.println("Enter the surname: > ");
+                System.out.print("Enter the surname: > ");
                 organization.setAddress(scanner.nextLine());
                 break;
             case "number":
                 try {
-                    System.out.println("Enter the number: > ");
+                    System.out.print("Enter the number: > ");
                     organization.setPhoneNumber(scanner.nextLine());
                 } catch (WrongNumberException exc) {
                     System.out.println("Wrong number format!");
@@ -272,5 +272,4 @@ public class Main {
         contacts.deleteContact(contactId);
         System.out.println("The record removed!");
     }
-
 }
