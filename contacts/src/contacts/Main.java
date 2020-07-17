@@ -114,7 +114,15 @@ public class Main {
         scanner.close();
     }
 
+    private static void printList() {
+        contacts.printAllContacts();
 
+        System.out.println("Enter index to show info: > ");
+        System.out.println(
+                contacts.getContact(Integer.parseInt(scanner.nextLine())).toString()
+        );
+    }
+    
     private static void printSearch() {
         System.out.println("Enter search query: > ");
         List<String> foundStrings = contacts.find(scanner.nextLine());
@@ -231,16 +239,5 @@ public class Main {
         }
 
         return organization;
-    }
-
-    private static void printList() {
-        Scanner scanner = new Scanner(System.in);
-
-        contacts.printAllContacts();
-
-        System.out.println("Enter index to show info: > ");
-        System.out.println(
-                contacts.getContact(Integer.parseInt(scanner.nextLine())).toString()
-        );
     }
 }
