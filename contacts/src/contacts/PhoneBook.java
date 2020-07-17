@@ -1,6 +1,8 @@
 package contacts;
 
 import contacts.contacts.Contact;
+import contacts.contacts.Organization;
+import contacts.contacts.Person;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,5 +37,46 @@ public class PhoneBook {
             System.out.println(i + ". " + c);
             i++;
         }
+    }
+
+    public List<String> find(String searchQuery) {
+        List<String> searchResult = new ArrayList<>();
+
+        Person p;
+        Organization o;
+        for (Contact c : contacts) {
+            if (c.getCreatedAt().toString().toLowerCase().contains(searchQuery.toLowerCase())) {
+                searchResult.add(c.getCreatedAt().toString());
+            }
+            if (c.getName().toLowerCase().contains(searchQuery.toLowerCase())) {
+                searchResult.add(c.getName());
+            }
+            if (c.getPhoneNumber().toLowerCase().contains(searchQuery.toLowerCase())) {
+                searchResult.add(c.getPhoneNumber());
+            }
+            if (c.getLastEditedAt().toString().toLowerCase().contains(searchQuery.toLowerCase())) {
+                searchResult.add(c.getLastEditedAt().toString());
+            }
+
+            if (c instanceof Person) {
+                p = (Person) c;
+                if (p.getSurname().toLowerCase().contains(searchQuery.toLowerCase())) {
+                    searchResult.add(p.getSurname());
+                }
+                if (p.getGenderLetter().toLowerCase().contains(searchQuery.toLowerCase())) {
+                    searchResult.add(p.getGenderLetter());
+                }
+                if (p.getBirthDateString().toLowerCase().contains(searchQuery.toLowerCase())) {
+                    searchResult.add(p.getBirthDateString());
+                }
+            } else if (c instanceof Organization) {
+                o = (Organization) c;
+                if (o.getAddress().toLowerCase().contains(searchQuery.toLowerCase())) {
+                    searchResult.add(o.getAddress());
+                }
+            }
+        }
+
+        return searchResult;
     }
 }
