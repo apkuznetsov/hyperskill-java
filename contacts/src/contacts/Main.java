@@ -7,6 +7,7 @@ import contacts.exceptions.BadBirthDateException;
 import contacts.exceptions.BadGenderException;
 import contacts.exceptions.WrongNumberException;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -25,6 +26,9 @@ public class Main {
                     break;
                 case "list":
                     printList();
+                    break;
+                case "search":
+                    printSearch();
                     break;
                 case "remove":
                     printRemove();
@@ -108,6 +112,19 @@ public class Main {
         System.out.println("The record added.");
 
         scanner.close();
+    }
+
+
+    private static void printSearch() {
+        System.out.println("Enter search query: > ");
+        List<String> foundStrings = contacts.find(scanner.nextLine());
+
+        System.out.printf("Found %d results:\n", foundStrings.size());
+        int i = 0;
+        for (String s : foundStrings) {
+            ++i;
+            System.out.printf("%d. %s\n", i, s);
+        }
     }
 
     private static void printRemove() {
