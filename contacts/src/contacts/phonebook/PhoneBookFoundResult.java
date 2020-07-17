@@ -1,10 +1,10 @@
 package contacts.phonebook;
 
-public class FoundResult {
+public class PhoneBookFoundResult {
     private final String foundResult;
     private final int contactId;
 
-    public FoundResult(String foundResult, int contactId) {
+    public PhoneBookFoundResult(String foundResult, int contactId) {
         this.foundResult = foundResult;
         this.contactId = contactId;
     }
