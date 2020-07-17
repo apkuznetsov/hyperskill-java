@@ -106,8 +106,6 @@ public class Main {
 
         contacts.addContact(organization);
         System.out.println("The record added.");
-
-        scanner.close();
     }
 
     private static void printList() {
