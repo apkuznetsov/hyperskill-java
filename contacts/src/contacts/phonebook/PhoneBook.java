@@ -31,14 +31,6 @@ public class PhoneBook {
         return contacts.size();
     }
 
-    public void printAllContacts() {
-        int i = 1;
-        for (Contact c : contacts) {
-            System.out.println(i + ". " + c);
-            i++;
-        }
-    }
-
     public List<PhoneBookFoundResult> find(String searchQuery) {
         List<PhoneBookFoundResult> searchResult = new ArrayList<>();
 
@@ -110,5 +102,18 @@ public class PhoneBook {
         }
 
         return searchResult;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        int i = 1;
+        for (Contact c : contacts) {
+            sb.append(i).append(". ").append(c);
+            i++;
+        }
+
+        return sb.toString();
     }
 }

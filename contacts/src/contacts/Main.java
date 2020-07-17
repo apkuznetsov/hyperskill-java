@@ -116,14 +116,14 @@ public class Main {
     }
 
     private static void printList() {
-        contacts.printAllContacts();
+        System.out.println(contacts);
 
         System.out.println("Enter index to show info: > ");
         System.out.println(
                 contacts.getContact(Integer.parseInt(scanner.nextLine())).toString()
         );
     }
-    
+
     private static void printSearch() {
         System.out.println("Enter search query: > ");
         List<String> foundStrings = contacts.find(scanner.nextLine());
@@ -138,7 +138,7 @@ public class Main {
 
     private static void printRemove() {
         if (contacts.getPhoneBookSize() != 0) {
-            contacts.printAllContacts();
+            System.out.println(contacts);
             System.out.println("Select a record: > ");
             contacts.removeContact(Integer.parseInt(scanner.nextLine()));
             System.out.println("The record removed!");
@@ -149,7 +149,7 @@ public class Main {
 
     private static void printEdit() {
         if (contacts.getPhoneBookSize() > 0) {
-            contacts.printAllContacts();
+            System.out.println(contacts);
 
             System.out.println("Select a record: > ");
             int id = Integer.parseInt(scanner.nextLine());
