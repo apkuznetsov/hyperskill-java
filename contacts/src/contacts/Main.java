@@ -18,11 +18,14 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String input;
         while (true) {
-            System.out.println("Enter action (add, remove, edit, count, info, exit): > ");
+            System.out.println("[menu] Enter action (add, list, search, count, exit): > ");
             input = scanner.nextLine();
             switch (input) {
                 case "add":
                     printAdd();
+                    break;
+                case "list":
+                    printList();
                     break;
                 case "remove":
                     printRemove();
@@ -32,9 +35,6 @@ public class Main {
                     break;
                 case "count":
                     System.out.println("The Phone Book has " + contacts.getPhoneBookSize() + " records.");
-                    break;
-                case "info":
-                    printInfo();
                     break;
                 case "exit":
                     return;
@@ -236,7 +236,7 @@ public class Main {
         return organization;
     }
 
-    private static void printInfo() {
+    private static void printList() {
         Scanner scanner = new Scanner(System.in);
 
         contacts.printAllContacts();
