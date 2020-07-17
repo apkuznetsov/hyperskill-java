@@ -19,11 +19,11 @@ public class PhoneBook {
         contacts.remove(id - 1);
     }
 
-    public void editContact(int id, Contact editedContact) {
+    public void editContact(final int id, Contact editedContact) {
         contacts.set(id - 1, editedContact);
     }
 
-    public Contact getContact(int id) {
+    public Contact getContact(final int id) {
         return contacts.get(id - 1);
     }
 

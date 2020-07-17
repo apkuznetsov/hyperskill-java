@@ -35,9 +35,6 @@ public class Main {
                 case "remove":
                     printRemove();
                     break;
-                case "edit":
-                    printEdit();
-                    break;
                 case "count":
                     System.out.println("The Phone Book has " + contacts.getPhoneBookSize() + " records.");
                     break;
@@ -140,20 +137,24 @@ public class Main {
         printSearchAgain(foundStrings);
     }
 
-    private static void printSearchAgain(List<PhoneBookFoundResult> foundStrings) {
+    private static void printSearchAgain(final List<PhoneBookFoundResult> foundStrings) {
         System.out.println("[search] Enter action ([number], back, again): >");
         String input = scanner.nextLine();
 
         if (isNumeric(input)) {
             int number = Integer.parseInt(input);
             int contactId = foundStrings.get(number - 1).getContactId();
-            System.out.println(contacts.getContact(contactId));
+            Contact contact = contacts.getContact(contactId);
+            System.out.println(contact);
+
+            System.out.println();
+            printEditContact(contactId, contact);
         } else if (input.equals("again")) {
             printSearch();
         }
     }
 
-    public static boolean isNumeric(String str) {
+    public static boolean isNumeric(final String str) {
         try {
             Double.parseDouble(str);
             return true;
@@ -162,35 +163,29 @@ public class Main {
         }
     }
 
-    private static void printRemove() {
-        if (contacts.getPhoneBookSize() != 0) {
-            System.out.println(contacts);
-            System.out.println("Select a record: > ");
-            contacts.removeContact(Integer.parseInt(scanner.nextLine()));
-            System.out.println("The record removed!");
-        } else {
-            System.out.println("No records to remove!");
-        }
-    }
+    private static void printEditContact(final int contactId, final Contact contact) {
+        System.out.println("[record] Enter action (edit, delete, menu): > ");
+        String input = scanner.nextLine();
 
-    private static void printEdit() {
-        if (contacts.getPhoneBookSize() > 0) {
-            System.out.println(contacts);
+        while (!input.equals("menu")) {
+            if (input.equals("edit")) {
+                Contact editedContact = null;
+                if (contact instanceof Person) {
+                    editedContact = printEditPerson(contact);
+                } else if (contact instanceof Organization) {
+                    editedContact = printEditOrganization(contact);
+                }
 
-            System.out.println("Select a record: > ");
-            int id = Integer.parseInt(scanner.nextLine());
-            Contact contact = contacts.getContact(id);
-
-            if (contact instanceof Person) {
-                contact = printEditPerson(contact);
-            } else if (contact instanceof Organization) {
-                contact = printEditOrganization(contact);
+                contacts.editContact(contactId, editedContact);
+                System.out.println("Saved");
+                System.out.println(editedContact);
+            } else if (input.equals("delete")) {
+                printDeleteContact(contactId);
             }
 
-            contacts.editContact(id, contact);
-            System.out.println("The record updated!");
-        } else {
-            System.out.println("No records to edit!");
+            System.out.println();
+            System.out.println("[record] Enter action (edit, delete, menu): > ");
+            input = scanner.nextLine();
         }
     }
 
