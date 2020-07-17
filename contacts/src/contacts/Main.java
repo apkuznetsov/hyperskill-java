@@ -12,10 +12,9 @@ import java.util.Scanner;
 public class Main {
 
     private static final PhoneBook contacts = new PhoneBook();
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-
-        Scanner scanner = new Scanner(System.in);
         String input;
         while (true) {
             System.out.println("[menu] Enter action (add, list, search, count, exit): > ");
@@ -37,6 +36,7 @@ public class Main {
                     System.out.println("The Phone Book has " + contacts.getPhoneBookSize() + " records.");
                     break;
                 case "exit":
+                    scanner.close();
                     return;
             }
             System.out.println();
@@ -44,8 +44,6 @@ public class Main {
     }
 
     private static void printAdd() {
-        Scanner scanner = new Scanner(System.in);
-
         System.out.println("Enter the type (person, organization): > ");
         String enteredType = scanner.nextLine();
 
@@ -54,13 +52,10 @@ public class Main {
         } else if (enteredType.equals("organization")) {
             printAddOrganization();
         }
-
-        scanner.close();
     }
 
     private static void printAddPerson() {
         Person person = new Person();
-        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter the name: > ");
         person.setName(scanner.nextLine());
@@ -91,13 +86,10 @@ public class Main {
 
         contacts.addContact(person);
         System.out.println("The record added.");
-
-        scanner.close();
     }
 
     private static void printAddOrganization() {
         Organization organization = new Organization();
-        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter the organization name: > ");
         organization.setName(scanner.nextLine());
@@ -119,7 +111,6 @@ public class Main {
     }
 
     private static void printRemove() {
-        Scanner scanner = new Scanner(System.in);
         if (contacts.getPhoneBookSize() != 0) {
             contacts.printAllContacts();
             System.out.println("Select a record: > ");
@@ -128,12 +119,9 @@ public class Main {
         } else {
             System.out.println("No records to remove!");
         }
-        scanner.close();
     }
 
     private static void printEdit() {
-        Scanner scanner = new Scanner(System.in);
-
         if (contacts.getPhoneBookSize() > 0) {
             contacts.printAllContacts();
 
@@ -152,13 +140,9 @@ public class Main {
         } else {
             System.out.println("No records to edit!");
         }
-
-        scanner.close();
     }
 
     private static Contact printEditPerson(Contact contact) {
-        Scanner scanner = new Scanner(System.in);
-
         Person person = (Person) contact;
 
         System.out.println("Select a field (name, surname, birth, gender, number): >");
@@ -200,13 +184,10 @@ public class Main {
                 break;
         }
 
-        scanner.close();
         return person;
     }
 
     private static Contact printEditOrganization(Contact contact) {
-        Scanner scanner = new Scanner(System.in);
-
         Organization organization = (Organization) contact;
 
         System.out.println("Select a field (name, address, number): >");
@@ -232,7 +213,6 @@ public class Main {
                 break;
         }
 
-        scanner.close();
         return organization;
     }
 
