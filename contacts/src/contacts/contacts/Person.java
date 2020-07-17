@@ -93,6 +93,6 @@ public class Person extends Contact {
                 "Birth date: " + getBirthDateString() + '\n' +
                 "Number: " + super.getPhoneNumber() + '\n' +
                 "Time created: " + super.getCreatedAt() + '\n' +
-                "Time last edit: " + super.getLastEditedAt() + '\n';
+                "Time last edit: " + super.getLastEditedAt();
     }
 }
