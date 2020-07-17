@@ -32,9 +32,6 @@ public class Main {
                 case "search":
                     printSearch();
                     break;
-                case "remove":
-                    printRemove();
-                    break;
                 case "count":
                     System.out.println("The Phone Book has " + contacts.getPhoneBookSize() + " records.");
                     break;
@@ -262,4 +259,10 @@ public class Main {
 
         return organization;
     }
+
+    private static void printDeleteContact(final int contactId) {
+        contacts.deleteContact(contactId);
+        System.out.println("The record removed!");
+    }
+
 }

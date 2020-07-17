@@ -15,16 +15,16 @@ public class PhoneBook {
         contacts.add(contact);
     }
 
-    public void removeContact(int id) {
-        contacts.remove(id - 1);
+    public Contact getContact(final int id) {
+        return contacts.get(id - 1);
     }
 
     public void editContact(final int id, Contact editedContact) {
         contacts.set(id - 1, editedContact);
     }
-
-    public Contact getContact(final int id) {
-        return contacts.get(id - 1);
+    
+    public void deleteContact(final int id) {
+        contacts.remove(id - 1);
     }
 
     public int getPhoneBookSize() {
