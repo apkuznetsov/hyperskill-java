@@ -38,6 +38,7 @@ public class PhoneBook {
         int id;
         String createdAt;
         String name;
+        String nameAndSurname;
         String phoneNumber;
         String lastEditedAt;
         String gender;
@@ -54,24 +55,31 @@ public class PhoneBook {
             c = contacts.get(i);
             id = i + 1;
 
+            if (c instanceof Person) {
+                p = (Person) c;
+                nameAndSurname = c.getName() + " " + p.getSurname();
+            } else {
+                nameAndSurname = c.getName();
+            }
+
             createdAt = c.getCreatedAt().toString();
             if (createdAt.toLowerCase().contains(query)) {
-                searchResult.add(new PhoneBookFoundResult(createdAt, id));
+                searchResult.add(new PhoneBookFoundResult(nameAndSurname, id));
             }
 
             name = c.getName();
             if (name.toLowerCase().contains(query)) {
-                searchResult.add(new PhoneBookFoundResult(name, id));
+                searchResult.add(new PhoneBookFoundResult(nameAndSurname, id));
             }
 
             phoneNumber = c.getPhoneNumber();
             if (phoneNumber.toLowerCase().contains(query)) {
-                searchResult.add(new PhoneBookFoundResult(phoneNumber, id));
+                searchResult.add(new PhoneBookFoundResult(nameAndSurname, id));
             }
 
             lastEditedAt = c.getLastEditedAt().toString();
             if (lastEditedAt.toLowerCase().contains(query)) {
-                searchResult.add(new PhoneBookFoundResult(lastEditedAt, id));
+                searchResult.add(new PhoneBookFoundResult(nameAndSurname, id));
             }
 
             if (c instanceof Person) {
@@ -79,24 +87,24 @@ public class PhoneBook {
 
                 surname = p.getSurname();
                 if (surname.toLowerCase().contains(query)) {
-                    searchResult.add(new PhoneBookFoundResult(surname, id));
+                    searchResult.add(new PhoneBookFoundResult(nameAndSurname, id));
                 }
 
                 gender = p.getGenderString();
                 if (gender.toLowerCase().contains(query)) {
-                    searchResult.add(new PhoneBookFoundResult(gender, id));
+                    searchResult.add(new PhoneBookFoundResult(nameAndSurname, id));
                 }
 
                 birthDate = p.getBirthDateString();
                 if (birthDate.toLowerCase().contains(query)) {
-                    searchResult.add(new PhoneBookFoundResult(birthDate, id));
+                    searchResult.add(new PhoneBookFoundResult(nameAndSurname, id));
                 }
             } else if (c instanceof Organization) {
                 o = (Organization) c;
 
                 address = o.getAddress();
                 if (address.toLowerCase().contains(query)) {
-                    searchResult.add(new PhoneBookFoundResult(address, id));
+                    searchResult.add(new PhoneBookFoundResult(nameAndSurname, id));
                 }
             }
         }

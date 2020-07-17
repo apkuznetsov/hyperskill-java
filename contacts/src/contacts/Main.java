@@ -150,7 +150,7 @@ public class Main {
     }
 
     private static void printSearchAgain(final List<PhoneBookFoundResult> foundStrings) {
-        System.out.print("[search] Enter action ([number], back, again): >");
+        System.out.print("[search] Enter action ([number], back, again): > ");
         String input = scanner.nextLine();
 
         if (isNumeric(input)) {
@@ -195,7 +195,7 @@ public class Main {
     private static Contact printEditPerson(Contact contact) {
         Person person = (Person) contact;
 
-        System.out.print("Select a field (name, surname, birth, gender, number): >");
+        System.out.print("Select a field (name, surname, birth, gender, number): > ");
         switch (scanner.nextLine()) {
             case "name":
                 System.out.print("Enter the name: > ");
@@ -240,7 +240,7 @@ public class Main {
     private static Contact printEditOrganization(Contact contact) {
         Organization organization = (Organization) contact;
 
-        System.out.print("Select a field (name, address, number): >");
+        System.out.print("Select a field (name, address, number): > ");
         switch (scanner.nextLine()) {
             case "name":
                 System.out.print("Enter the name: > ");
