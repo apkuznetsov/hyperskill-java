@@ -39,7 +39,7 @@ public class Person extends Contact {
         return !gender;
     }
 
-    public String getGenderLetter() {
+    public String getGenderString() {
         if (gender == null) {
             return "[no data]";
         } else if (gender) {
@@ -89,7 +89,7 @@ public class Person extends Contact {
     public String toString() {
         return "Name: " + super.getName() + '\n' +
                 "Surname: " + getSurname() + '\n' +
-                "Gender: " + getGenderLetter() + '\n' +
+                "Gender: " + getGenderString() + '\n' +
                 "Birth date: " + getBirthDateString() + '\n' +
                 "Number: " + super.getPhoneNumber() + '\n' +
                 "Time created: " + super.getCreatedAt() + '\n' +

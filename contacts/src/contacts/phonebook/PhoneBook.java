@@ -39,40 +39,72 @@ public class PhoneBook {
         }
     }
 
-    public List<String> find(String searchQuery) {
-        List<String> searchResult = new ArrayList<>();
+    public List<PhoneBookFoundResult> find(String searchQuery) {
+        List<PhoneBookFoundResult> searchResult = new ArrayList<>();
+
+        Contact c;
+        int id;
+        String createdAt;
+        String name;
+        String phoneNumber;
+        String lastEditedAt;
+        String gender;
 
         Person p;
+        String surname;
+        String birthDate;
+
         Organization o;
-        for (Contact c : contacts) {
-            if (c.getCreatedAt().toString().toLowerCase().contains(searchQuery.toLowerCase())) {
-                searchResult.add(c.getCreatedAt().toString());
+        String address;
+
+        final String query = searchQuery.toLowerCase();
+        for (int i = 0; i < contacts.size(); i++) {
+            c = contacts.get(i);
+            id = i + 1;
+
+            createdAt = c.getCreatedAt().toString();
+            if (createdAt.toLowerCase().contains(query)) {
+                searchResult.add(new PhoneBookFoundResult(createdAt, id));
             }
-            if (c.getName().toLowerCase().contains(searchQuery.toLowerCase())) {
-                searchResult.add(c.getName());
+
+            name = c.getName();
+            if (name.toLowerCase().contains(query)) {
+                searchResult.add(new PhoneBookFoundResult(name, id));
             }
-            if (c.getPhoneNumber().toLowerCase().contains(searchQuery.toLowerCase())) {
-                searchResult.add(c.getPhoneNumber());
+
+            phoneNumber = c.getPhoneNumber();
+            if (phoneNumber.toLowerCase().contains(query)) {
+                searchResult.add(new PhoneBookFoundResult(phoneNumber, id));
             }
-            if (c.getLastEditedAt().toString().toLowerCase().contains(searchQuery.toLowerCase())) {
-                searchResult.add(c.getLastEditedAt().toString());
+
+            lastEditedAt = c.getLastEditedAt().toString();
+            if (lastEditedAt.toLowerCase().contains(query)) {
+                searchResult.add(new PhoneBookFoundResult(lastEditedAt, id));
             }
 
             if (c instanceof Person) {
                 p = (Person) c;
-                if (p.getSurname().toLowerCase().contains(searchQuery.toLowerCase())) {
-                    searchResult.add(p.getSurname());
+
+                surname = p.getSurname();
+                if (surname.toLowerCase().contains(query)) {
+                    searchResult.add(new PhoneBookFoundResult(surname, id));
                 }
-                if (p.getGenderLetter().toLowerCase().contains(searchQuery.toLowerCase())) {
-                    searchResult.add(p.getGenderLetter());
+
+                gender = p.getGenderString();
+                if (gender.toLowerCase().contains(query)) {
+                    searchResult.add(new PhoneBookFoundResult(gender, id));
                 }
-                if (p.getBirthDateString().toLowerCase().contains(searchQuery.toLowerCase())) {
-                    searchResult.add(p.getBirthDateString());
+
+                birthDate = p.getBirthDateString();
+                if (birthDate.toLowerCase().contains(query)) {
+                    searchResult.add(new PhoneBookFoundResult(birthDate, id));
                 }
             } else if (c instanceof Organization) {
                 o = (Organization) c;
-                if (o.getAddress().toLowerCase().contains(searchQuery.toLowerCase())) {
-                    searchResult.add(o.getAddress());
+
+                address = o.getAddress();
+                if (address.toLowerCase().contains(query)) {
+                    searchResult.add(new PhoneBookFoundResult(address, id));
                 }
             }
         }
