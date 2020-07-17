@@ -6,6 +6,7 @@ import contacts.contacts.Person;
 import contacts.exceptions.BadBirthDateException;
 import contacts.exceptions.BadGenderException;
 import contacts.exceptions.WrongNumberException;
+import contacts.phonebook.PhoneBook;
 
 import java.util.List;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package contacts;
+package contacts.phonebook;
 
 import contacts.contacts.Contact;
 import contacts.contacts.Organization;
