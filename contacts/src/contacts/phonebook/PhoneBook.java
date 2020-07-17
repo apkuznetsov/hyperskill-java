@@ -22,7 +22,7 @@ public class PhoneBook {
     public void editContact(final int id, Contact editedContact) {
         contacts.set(id - 1, editedContact);
     }
-    
+
     public void deleteContact(final int id) {
         contacts.remove(id - 1);
     }

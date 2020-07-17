@@ -113,10 +113,27 @@ public class Main {
     private static void printList() {
         System.out.println(contacts);
 
-        System.out.println("Enter index to show info: > ");
-        System.out.println(
-                contacts.getContact(Integer.parseInt(scanner.nextLine())).toString()
-        );
+        System.out.println();
+        System.out.println("[list] Enter action ([number], back): > ");
+        String input = scanner.nextLine();
+
+        if (isNumeric(input)) {
+            final int contactId = Integer.parseInt(input);
+            Contact contact = contacts.getContact(contactId);
+            System.out.println(contact);
+
+            System.out.println();
+            printEditContact(contactId, contact);
+        }
+    }
+
+    public static boolean isNumeric(final String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException exc) {
+            return false;
+        }
     }
 
     private static void printSearch() {
@@ -148,15 +165,6 @@ public class Main {
             printEditContact(contactId, contact);
         } else if (input.equals("again")) {
             printSearch();
-        }
-    }
-
-    public static boolean isNumeric(final String str) {
-        try {
-            Double.parseDouble(str);
-            return true;
-        } catch (NumberFormatException exc) {
-            return false;
         }
     }
 
